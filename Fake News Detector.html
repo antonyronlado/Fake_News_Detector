@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Fake News Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066CC',
+                        secondary: '#F8F9FA'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .result-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+        .result-animation.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .source-card {
+            transition: transform 0.3s ease;
+        }
+        .source-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <span class="text-3xl font-['Pacifico'] text-primary">FakeOut</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-24">
+        <section class="container mx-auto px-6 py-12">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Real-Time Fake News Detection</h1>
+                <p class="text-lg text-gray-600">Verify the authenticity of news articles instantly with our AI-powered detection system</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8 mb-12">
+                <div class="mb-6">
+                    <textarea id="newsInput" class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-primary" rows="4" placeholder="Paste your news article or URL here"></textarea>
+                </div>
+                <button onclick="checkNews()" class="w-full bg-primary text-white py-3 px-6 rounded-button hover:bg-primary/90 transition-colors">
+                    Check News
+                </button>
+            </div>
+
+            <div id="resultSection" class="max-w-3xl mx-auto result-animation hidden">
+                <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                    <div class="text-center mb-6">
+                        <h2 id="resultPrediction" class="text-3xl font-bold mb-2"></h2>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progressBar" class="h-2.5 rounded-full"></div>
+                    </div>
+                </div>
+
+                <div id="sourcesList" class="space-y-4">
+                </div>
+            </div>
+        </section>
+        <div class="text-center mb-6">
+            <button onclick="goBack()" class="bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors">
+                ← Back
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 text-center  mt-auto fixed-bottom py-8">
+        <div class="text-gray-600 text-sm">© 2025 FakeOut. All rights reserved.</div>
+    </footer>    
+
+    <script>
+        async function checkNews() {
+        let newsText = document.getElementById("newsInput").value;
+
+        if (!newsText) {
+            alert("Please enter news text");
+            return;
+        }
+
+        document.getElementById("resultSection").classList.remove("hidden");
+        document.getElementById("resultSection").classList.add("show");
+        document.getElementById("resultPrediction").textContent = "Checking...";
+        document.getElementById("sourcesList").innerHTML = "";
+
+        let progressBar = document.getElementById("progressBar");
+        progressBar.classList.remove("bg-red-500", "bg-green-500");
+        progressBar.style.width = "0%";
+
+        try {
+            let response = await fetch("http://127.0.0.1:8000/predict/?news_text=" + encodeURIComponent(newsText), {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            let data = await response.json();
+
+            document.getElementById("resultPrediction").textContent = `Prediction: ${data.prediction}`;
+
+            if (data.prediction.trim().toUpperCase() === "FAKE") {
+                progressBar.classList.remove("bg-green-500");
+                progressBar.classList.add("bg-red-500");
+                progressBar.style.width = "85%";
+            } else {
+                progressBar.classList.remove("bg-red-500");
+                progressBar.classList.add("bg-green-500");
+                progressBar.style.width = "100%";
+            }
+
+            let sourcesList = "";
+            for (const [source, text] of Object.entries(data.sources)) {
+                sourcesList += `<div class="source-card bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <a href="${source}" target="_blank" class="text-primary hover:underline block mb-2">${source}</a>
+                    <p class="text-gray-600">${text.slice(0, 100)}...</p>
+                </div>`;
+            }
+            document.getElementById("sourcesList").innerHTML = sourcesList;
+
+        } catch (error) {
+            console.error("Error fetching prediction", error);
+            document.getElementById("resultPrediction").textContent = "Error checking news. Please try again.";
+            document.getElementById("sourcesList").innerHTML = "";
+        }
+    }
+    </script>
+</body>
+</html>
