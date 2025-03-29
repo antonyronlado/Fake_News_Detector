@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Fake News Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066CC',
+                        secondary: '#F8F9FA'
+                    },
+                    borderRadius: {
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .home-section, .about-section, .services-section, .contact-section {
+            display: none;
+        }
+        .active-section {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between">
+            <span class="text-3xl font-['Pacifico'] text-primary">FakeOut</span>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-primary">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-primary">About</a>
+                <a href="#services" class="text-gray-700 hover:text-primary">Services</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow pt-24">
+<section id="home" class="home-section active-section relative">
+    <div class="relative bg-cover bg-center h-[90vh] flex items-center justify-center"
+        style="background-image: url(https://res.cloudinary.com/clouddy/image/upload/v1743086684/Gemini_Generated_Image_8uh1ym8uh1ym8uh1_fj1kzt.jpg);">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-6xl font-bold text-white mb-4 drop-shadow-lg">
+                Combat Fake News with AI-Powered Accuracy
+            </h1>
+            <p class="text-lg text-white max-w-2xl mx-auto drop-shadow-md">
+                FakeOut uses advanced AI & machine learning algorithms to verify the authenticity of news in real time.
+                Say goodbye to misinformation and stay informed with trust.
+            </p>
+            <button onclick="navigateToSection('services')" class="mt-6 px-6 py-3 bg-primary text-white rounded-button shadow-md hover:bg-blue-700 transition">
+                Get Started
+            </button>
+            
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">How FakeOut Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <i class="ri-search-eye-line text-4xl text-primary mb-4"></i>
+                <h3 class="text-xl font-semibold">Step 1: Input News</h3>
+                <p class="text-gray-700">Enter or paste the news article you want to verify.</p>
+            </div>
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <i class="ri-brain-line text-4xl text-primary mb-4"></i>
+                <h3 class="text-xl font-semibold">Step 2: AI Analysis</h3>
+                <p class="text-gray-700">Our AI scans sources, checks facts, and analyzes credibility.</p>
+            </div>
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <i class="ri-checkbox-circle-line text-4xl text-primary mb-4"></i>
+                <h3 class="text-xl font-semibold">Step 3: Get Results</h3>
+                <p class="text-gray-700">Instantly see whether the news is real or fake.</p>
+            </div>
+        </div>
+    </div>
+
+<section class="bg-gray-100 py-16">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-900 mb-8">Potential Impact of FakeOut</h2>
+        <p class="text-lg max-w-3xl mx-auto text-gray-700 mb-12">
+            In a digital world flooded with misinformation, FakeOut has the potential to become a powerful tool in 
+            identifying fake news and ensuring access to credible information. 
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 bg-white rounded-lg shadow-lg text-center">
+                <i class="ri-global-line text-6xl text-blue-600"></i>
+                <h3 class="text-2xl font-semibold mt-4">Addressing Misinformation</h3>
+                <p class="text-gray-600 mt-2">
+                    Designed to analyze and verify news in real-time, Fakeout aims to reduce the spread of false information.
+                </p>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-lg text-center">
+                <i class="ri-team-line text-6xl text-blue-600"></i>
+                <h3 class="text-2xl font-semibold mt-4">A Tool for Researchers & Individuals</h3>
+                <p class="text-gray-600 mt-2">
+                    Journalists, researchers, and everyday users can utilize this platform for fact-checking once deployed.
+                </p>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-lg text-center">
+                <i class="ri-bar-chart-box-line text-6xl text-blue-600"></i>
+                <h3 class="text-2xl font-semibold mt-4">Future Potential</h3>
+                <p class="text-gray-600 mt-2">
+                    With further improvements, FakeOut can be integrated into news platforms for credibility analysis.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <h3 class="text-3xl font-semibold text-gray-900">Help Us Build FakeOut</h3>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto mt-4">
+                FakeOut is in development, and we are working to enhance its accuracy and performance. 
+                If you're passionate about fighting misinformation, join us in making this tool a reality.
+            </p>
+            <button class="mt-6 px-8 py-4 bg-blue-600 text-white font-semibold rounded-button shadow-lg hover:bg-blue-700 transition">
+                Get Involved
+            </button>
+<div id="getInvolvedModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <h2 class="text-xl font-bold mb-4">Get Involved</h2>
+        <form>
+            <label class="block mb-2">Username</label>
+            <input type="text" class="w-full p-2 border rounded mb-4" placeholder="Enter your username">
+
+            <label class="block mb-2">Email</label>
+            <input type="email" class="w-full p-2 border rounded mb-4" placeholder="Enter your email">
+
+            <div class="flex justify-end">
+                <button id="closeModal" class="px-4 py-2 bg-gray-500 text-white rounded mr-2">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">What Our Users Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <p class="text-gray-700 italic">"FakeOut has helped me fact-check news instantly. It's a must-have tool for journalists!"</p>
+                <h4 class="font-semibold mt-4">- Sarah K.</h4>
+            </div>
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <p class="text-gray-700 italic">"With misinformation on the rise, FakeOut is a lifesaver. Highly recommend it!"</p>
+                <h4 class="font-semibold mt-4">- Mark T.</h4>
+            </div>
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <p class="text-gray-700 italic">"As a researcher, verifying sources is crucial. FakeOut simplifies the process!"</p>
+                <h4 class="font-semibold mt-4">- Alex R.</h4>
+            </div>
+        </div>
+    </div>
+</section>
+               <section id="about" class="about-section py-16 bg-white">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-6">About Us</h1>
+            
+                    <div class="flex flex-wrap justify-center gap-12">
+                        <div class="bg-white p-10 rounded-2xl shadow-lg text-center max-w-xs transition-transform transform hover:-translate-y-2">
+                            <img src="https://res.cloudinary.com/clouddy/image/upload/v1743065387/Image_enegix.jpg" alt="Hariharan V" class="w-44 h-44 mx-auto rounded-full border-4 border-blue-500 object-cover">
+                            <h3 class="text-2xl font-semibold mt-4 text-blue-500">Hariharan V</h3>
+                            <p class="text-gray-600">2nd Year ADS Student</p>
+                            <p class="text-gray-500">Cloud Enthusiast & Frontend Developer</p>
+                            <p class="text-gray-500">St. Joseph's Institute of Technology</p>
+                        </div>
+                        
+                        <div class="bg-white p-10 rounded-2xl shadow-lg text-center max-w-xs transition-transform transform hover:-translate-y-2">
+                            <img src="https://res.cloudinary.com/clouddy/image/upload/v1743065528/Photo-24_kb_rp9wa2.jpg" alt="Antony Ronaldo" class="w-44 h-44 mx-auto rounded-full border-4 border-blue-500 object-cover">
+                            <h3 class="text-2xl font-semibold mt-4 text-blue-500">Antony Ronaldo</h3>
+                            <p class="text-gray-600">2nd Year ADS Student</p>
+                            <p class="text-gray-500">Full Stack Developer</p>
+                            <p class="text-gray-500">St. Joseph's Institute of Technology</p>
+                        </div>
+                        
+                        <div class="bg-white p-10 rounded-2xl shadow-lg text-center max-w-xs transition-transform transform hover:-translate-y-2">
+                            <img src="https://res.cloudinary.com/clouddy/image/upload/v1743065478/WhatsApp_Image_2025-03-27_at_14.20.49_3cf02812_skr23t.jpg" alt="Arun Kumar" class="w-44 h-44 mx-auto rounded-full border-4 border-blue-500 object-cover">
+                            <h3 class="text-2xl font-semibold mt-4 text-blue-500">Arun Kumar</h3>
+                            <p class="text-gray-600">2nd Year ADS Student</p>
+                            <p class="text-gray-500">Full Stack Developer</p>
+                            <p class="text-gray-500">St. Joseph's Institute of Technology</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<section id="services" class="services-section py-16 bg-white ">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold text-gray-900 mb-12">Our Services</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="relative p-8 bg-gray-50 rounded-2xl shadow-lg border border-gray-200 hover:scale-105 transition-transform">
+                <i class="ri-shield-check-line text-6xl text-primary mb-6"></i>
+                <h2 class="text-2xl font-semibold text-gray-900">Fake News Detection</h2>
+                <p class="text-gray-600 mt-3">Analyze news articles in real-time to detect misinformation and ensure credibility.</p>
+                <a href="./Fake News Detector.html">
+                    <button class="mt-6 px-5 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
+                        Launch Project
+                    </button>
+                </a>
+                
+            </div>
+            <div class="relative p-8 bg-gray-50 rounded-2xl shadow-lg border border-gray-200 hover:scale-105 transition-transform">
+                <i class="ri-file-text-line text-6xl text-primary mb-6"></i>
+                <h2 class="text-2xl font-semibold text-gray-900">News Key Points Extraction</h2>
+                <p class="text-gray-600 mt-3">Summarize articles effectively to highlight essential details and insights.</p>
+                <a href="./Summary.html">
+                    <button class="mt-6 px-5 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
+                        Launch Project
+                    </button>
+                </a>
+            </div>
+            <div class="relative p-8 bg-gray-50 rounded-2xl shadow-lg border border-gray-200 hover:scale-105 transition-transform">
+                <i class="ri-check-double-line text-6xl text-primary mb-6"></i>
+                <h2 class="text-2xl font-semibold text-gray-900">News Communicator</h2>
+                <p class="text-gray-600 mt-3">Access the latest news from reliable sources, stay updated in real-time, and explore trending topics effortlessly.</p>
+                <a href="./News Communicator.html">
+                    <button class="mt-6 px-5 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
+                        Launch Project
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section py-16 bg-gray-100">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold text-gray-900 mb-8">Contact Us</h1>
+        
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-6">
+            Get in touch with us for collaborations, inquiries, or any questions related to FakeOut. 
+            We are excited to connect with like-minded individuals and organizations!
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <i class="ri-school-line text-6xl text-blue-600"></i>
+                <h2 class="text-2xl font-semibold mt-4">Our Institution</h2>
+                <p class="text-gray-600 mt-2">St. Joseph's Institute of Technology</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <i class="ri-map-pin-line text-6xl text-blue-600"></i>
+                <h2 class="text-2xl font-semibold mt-4">Our Location</h2>
+                <p class="text-gray-600 mt-2">OMR, Chennai, Tamil Nadu, India</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <i class="ri-mail-line text-6xl text-blue-600"></i>
+                <h2 class="text-2xl font-semibold mt-4">Email Us</h2>
+                <p class="text-gray-600 mt-2">
+                    <a href="mailto:stjosephstechnology@stjosephstechnology.ac.in" class="text-primary hover:underline">
+                        stjosephstechnology@stjosephstechnology.ac.in
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <h3 class="text-3xl font-semibold text-gray-900">Connect With Us</h3>
+            <p class="text-lg text-gray-700 mt-4">
+                Follow us on social media for the latest updates, events, and insights into our projects.
+            </p>
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="https://m.facebook.com/st.josephsinstituteoftechnologyofficial/" target="_blank" class="text-blue-600 text-4xl hover:text-blue-800"><i class="ri-facebook-circle-line"></i></a>
+                <a href="https://x.com/StJosephstechg" target="_blank" class="text-blue-500 text-4xl hover:text-blue-700"><i class="ri-twitter-line"></i></a>
+                <a href="https://www.instagram.com/stjosephstech?igsh=MTU5MWlnNnlleGV5Yw==" target="_blank" class="text-red-600 text-4xl hover:text-red-800"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.linkedin.com/in/department-of-artificial-intelligence-and-data-science-st-joseph-s-institute-of-tech-70422328a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-gray-900 text-4xl hover:text-gray-700"><i class="ri-linkedin-box-line"></i></a>
+            </div>
+        </div>
+
+        <div class="mt-12 bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-6">Send Us a Message</h2>
+            <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600">
+                    <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600">
+                </div>
+                <textarea placeholder="Your Message" rows="4" class="w-full mt-6 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600"></textarea>
+                <button type="submit" class="mt-6 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="bg-gray-50 mt-auto w-full py-4 text-center shadow-md">
+        <p class="text-gray-600">© 2025 FakeOut. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('.home-section, .about-section, .services-section, .contact-section')
+                    .forEach(section => section.classList.remove('active-section'));
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active-section');
+            });
+        });
+        function navigateToSection(sectionId) {
+        document.querySelectorAll('.home-section, .about-section, .services-section, .contact-section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const sectionId = this.getAttribute('href').substring(1);
+            navigateToSection(sectionId);
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+    const getInvolvedButton = document.querySelector(".bg-blue-600"); 
+    const modal = document.getElementById("getInvolvedModal");
+    const closeModalButton = document.getElementById("closeModal");
+
+    getInvolvedButton.addEventListener("click", function () {
+        modal.classList.remove("hidden"); 
+    });
+
+    closeModalButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    modal.classList.add("hidden"); 
+});
+
+
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.classList.add("hidden");
+        }
+    });
+});
+
+    </script>
+
+</body>
+</html>
