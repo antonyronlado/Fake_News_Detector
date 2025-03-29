@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FakeOut - Text Summarizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: white; }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <span class="text-3xl font-['Pacifico'] text-blue-600">FakeOut</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-24">
+        <section class="container mx-auto px-6 py-12">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">News Summarizer</h1>
+                <p class="text-lg text-gray-600">Summarize long texts quickly with our AI-powered tool</p>
+            </div>
+            
+            <div class="flex justify-center">
+                <div class="max-w-lg bg-white rounded-lg shadow-md p-8">
+                    <h2 class="text-xl font-bold mb-4">Enter News to Summarize</h2>
+                    <textarea id="inputText" class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-600" rows="4" placeholder="Enter text here..."></textarea>
+                    <button onclick="summarizeText()" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors mt-4">Summarize</button>
+                    <h3 class="text-lg font-bold mt-6">Summary:</h3>
+                    <p id="outputSummary" class="text-gray-700"></p>
+                </div>
+            </div>
+            <div class="flex justify-center mt-6">
+                <button onclick="goBack()" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+                    ← Back
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-50 text-center py-8">
+        <div class="text-gray-600 text-sm">© 2025 FakeOut. All rights reserved.</div>
+    </footer>
+</body>
+<script>
+    async function summarizeText() {
+        const text = document.getElementById("inputText").value;
+        if (!text) {
+            alert("Please enter some text to summarize!");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:5000/summarize", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text })
+            });
+
+            const result = await response.json();
+            if (result.summary) {
+                document.getElementById("outputSummary").innerText = result.summary;
+            } else {
+                document.getElementById("outputSummary").innerText = "Error: " + result.error;
+            }
+        } catch (error) {
+            console.error("Fetch Error:", error);
+            document.getElementById("outputSummary").innerText = "Server error. Make sure Flask is running!";
+        }
+    }
+    function goBack() {
+        window.location.href = "Frontend.html#services";
+    }
+</script>
+</html>
